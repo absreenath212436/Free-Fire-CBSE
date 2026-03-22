@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="theme-color" content="#060d14" />
+    <meta name="description" content="India Quest - CBSE RPG Learning Game. Travel across India, enter subject buildings, solve AI-generated puzzles. Classes 1-5." />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta property="og:title" content="India Quest - CBSE Learning RPG" />
+    <meta property="og:description" content="Travel across India solving CBSE puzzles in this epic RPG learning adventure!" />
+    <meta property="og:type" content="game" />
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Nunito:ital,wght@0,400;0,700;0,900;1,700&display=swap" rel="stylesheet" />
+    <title>India Quest 🗺️</title>
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body, #root { height: 100%; }
+      body {
+        background: #060d14;
+        font-family: 'Nunito', sans-serif;
+        -webkit-tap-highlight-color: transparent;
+        overscroll-behavior: none;
+      }
+      /* Loading splash */
+      #splash {
+        position: fixed; inset: 0; background: #060d14;
+        display: flex; align-items: center; justify-content: center;
+        font-size: 3rem; z-index: 9999;
+        transition: opacity 0.5s;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="splash">🗺️</div>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+    <script>
+      window.addEventListener('load', () => {
+        setTimeout(() => {
+          const s = document.getElementById('splash');
+          if (s) { s.style.opacity = '0'; setTimeout(() => s.remove(), 500); }
+        }, 800);
+      });
+    </script>
+  </body>
+</html>
