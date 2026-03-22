@@ -30,8 +30,8 @@ India Quest is a **Free Fire / Call of Duty–style learning RPG** for CBSE stud
 
 ### 1. Clone the repo
 ```bash
-git clone https://github.com/YOUR_USERNAME/india-quest.git
-cd india-quest
+git clone https://github.com/absreenath212436/Free-Fire-CBSE.git
+cd Free-Fire-CBSE
 npm install
 ```
 
@@ -55,20 +55,26 @@ npm run dev
 
 ### Option A — Vercel (Recommended, full AI support)
 
-1. Push your repo to GitHub
-2. Go to [vercel.com](https://vercel.com) → Import project → Select your repo
-3. In Vercel dashboard → Settings → Environment Variables:
+1. Go to [vercel.com](https://vercel.com) → Import project → Select `Free-Fire-CBSE`
+2. In Vercel dashboard → Settings → Environment Variables:
    - Add `ANTHROPIC_API_KEY` = your key from [console.anthropic.com](https://console.anthropic.com)
-4. Click Deploy ✅
+3. Click Deploy ✅
 
 The `/api/generate.js` serverless function keeps your API key safe on the server side.
 
 ### Option B — GitHub Pages (Static, uses seed questions)
 
-1. In `vite.config.js`, set `base: '/india-quest/'` (your repo name)
-2. Push to `main` branch
-3. Go to **GitHub repo → Settings → Pages → Source: GitHub Actions**
-4. The `.github/workflows/deploy.yml` will build and deploy automatically
+1. In `vite.config.js`, make sure base is set to:
+   ```js
+   base: '/Free-Fire-CBSE/',
+   ```
+2. Go to **GitHub repo → Settings → Pages → Source → GitHub Actions**
+3. Push any commit to `main` — the `.github/workflows/deploy.yml` builds and deploys automatically
+
+Your live game URL:
+```
+https://absreenath212436.github.io/Free-Fire-CBSE/
+```
 
 > GitHub Pages is static — it cannot run the `/api` serverless function. The game uses built-in seed questions instead of AI generation on GitHub Pages.
 
@@ -85,7 +91,7 @@ Add `ANTHROPIC_API_KEY` in Netlify → Site settings → Environment variables.
 ## 📁 Project Structure
 
 ```
-india-quest/
+Free-Fire-CBSE/
 ├── api/
 │   └── generate.js          ← Vercel serverless function (AI question gen)
 ├── public/
@@ -207,6 +213,14 @@ To convert to a React Native mobile app:
 3. Use `react-native-svg` for the India map (same SVG syntax)
 4. Use `expo-av` for sound effects
 5. Submit to Google Play Store ($25 one-time) and Apple App Store ($99/year)
+
+---
+
+## 🔗 Links
+
+- **Live Game:** https://absreenath212436.github.io/Free-Fire-CBSE/
+- **Repository:** https://github.com/absreenath212436/Free-Fire-CBSE
+- **Issues / Feedback:** https://github.com/absreenath212436/Free-Fire-CBSE/issues
 
 ---
 
