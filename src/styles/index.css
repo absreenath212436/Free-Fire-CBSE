@@ -1,0 +1,158 @@
+/* src/styles/index.css */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Nunito:ital,wght@0,400;0,700;0,900;1,700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Base ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  height: 100%;
+  font-family: 'Nunito', sans-serif;
+  background: #060d14;
+  color: #fff;
+  -webkit-tap-highlight-color: transparent;
+  overscroll-behavior: none;
+  -webkit-font-smoothing: antialiased;
+}
+
+#root { min-height: 100%; }
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #1e3a5f; border-radius: 99px; }
+
+/* ── Button reset ── */
+button { cursor: pointer; border: none; background: none; font-family: inherit; }
+input, textarea { font-family: inherit; }
+a { color: inherit; text-decoration: none; }
+
+/* ── Utility classes ── */
+.font-orbitron { font-family: 'Orbitron', monospace; }
+.font-nunito   { font-family: 'Nunito', sans-serif; }
+
+/* ── Game-specific component classes ── */
+@layer components {
+
+  /* Card base */
+  .game-card {
+    @apply rounded-2xl;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+
+  /* Glowing button */
+  .btn-primary {
+    @apply py-4 rounded-2xl font-black text-black transition-all active:scale-95 cursor-pointer;
+    background: linear-gradient(135deg, #FFD93D, #FF8C42);
+  }
+  .btn-primary:disabled {
+    background: rgba(255,255,255,0.1);
+    color: rgba(255,255,255,0.2);
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  .btn-success {
+    @apply py-4 rounded-2xl font-black text-black transition-all active:scale-95 cursor-pointer;
+    background: linear-gradient(135deg, #6BCB77, #4ECDC4);
+  }
+
+  .btn-ghost {
+    @apply py-3 px-4 rounded-xl font-bold text-white transition-all active:scale-95 cursor-pointer;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.12);
+  }
+  .btn-ghost:hover { background: rgba(255,255,255,0.14); }
+
+  /* Answer option button */
+  .answer-btn {
+    @apply py-4 px-3 rounded-2xl font-bold text-sm text-white transition-all active:scale-95 cursor-pointer;
+    background: rgba(255,255,255,0.09);
+    border: 2px solid rgba(255,255,255,0.15);
+  }
+  .answer-btn:hover { background: rgba(255,255,255,0.14); }
+  .answer-btn.correct {
+    background: linear-gradient(135deg, #6BCB77, #4ECDC4);
+    border-color: #6BCB77;
+  }
+  .answer-btn.wrong {
+    background: linear-gradient(135deg, #E74C3C, #C0392B);
+    border-color: #E74C3C;
+  }
+  .answer-btn.selected {
+    border-color: rgba(255,255,255,0.4);
+    background: rgba(255,255,255,0.18);
+  }
+
+  /* HP / XP progress bars */
+  .progress-bar {
+    @apply w-full h-2 rounded-full overflow-hidden;
+    background: rgba(255,255,255,0.1);
+  }
+  .progress-fill {
+    @apply h-full rounded-full transition-all duration-500;
+  }
+
+  /* Star rating */
+  .star { font-size: 1.25rem; }
+  .star.filled { color: #FFD93D; }
+  .star.empty  { color: rgba(255,255,255,0.2); }
+
+  /* Difficulty badge */
+  .badge-easy   { color: #6BCB77; background: rgba(107,203,119,0.15); border: 1px solid rgba(107,203,119,0.3); }
+  .badge-medium { color: #FFD93D; background: rgba(255,217,61,0.15);  border: 1px solid rgba(255,217,61,0.3); }
+  .badge-hard   { color: #FF6B6B; background: rgba(255,107,107,0.15); border: 1px solid rgba(255,107,107,0.3); }
+
+  /* Tile in city grid */
+  .grid-tile {
+    @apply flex items-center justify-center rounded-sm cursor-pointer transition-all;
+    aspect-ratio: 1;
+    border: 1px solid rgba(255,255,255,0.03);
+  }
+  .grid-tile:hover { border-color: rgba(255,255,255,0.12); }
+  .grid-tile.near  { border-color: rgba(255,220,0,0.5); box-shadow: 0 0 6px rgba(255,220,0,0.3); }
+  .grid-tile.player-pos { border-color: rgba(255,255,255,0.2); }
+}
+
+/* ── Animations ── */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-10px); }
+}
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%       { transform: translateX(-6px); }
+  40%       { transform: translateX(6px); }
+  60%       { transform: translateX(-4px); }
+  80%       { transform: translateX(4px); }
+}
+@keyframes popIn {
+  0%   { transform: scale(0.5); opacity: 0; }
+  70%  { transform: scale(1.1); }
+  100% { transform: scale(1);   opacity: 1; }
+}
+@keyframes correctFlash {
+  0%, 100% { background: transparent; }
+  50%       { background: rgba(107,203,119,0.12); }
+}
+@keyframes wrongFlash {
+  0%, 100% { background: transparent; }
+  50%       { background: rgba(231,76,60,0.18); }
+}
+@keyframes timerPulse {
+  0%, 100% { transform: scale(1); }
+  50%       { transform: scale(1.05); }
+}
+
+.animate-float   { animation: float 3s ease-in-out infinite; }
+.animate-shake   { animation: shake 0.4s ease-in-out; }
+.animate-pop-in  { animation: popIn 0.4s cubic-bezier(0.175,0.885,0.32,1.275); }
+.flash-correct   { animation: correctFlash 0.5s ease; }
+.flash-wrong     { animation: wrongFlash 0.5s ease; }
+.timer-urgent    { animation: timerPulse 0.5s ease-in-out infinite; }
+
+/* ── SVG map text anti-alias ── */
+svg text { shape-rendering: optimizeLegibility; text-rendering: optimizeLegibility; }
